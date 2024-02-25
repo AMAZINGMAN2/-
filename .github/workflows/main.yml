@@ -15,7 +15,7 @@ jobs:
           Remove-Item -Path "ngrok.zip" -Force
 
       - name: Auth
-        run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+        run: ${github.workspace}\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
         env:
           NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
 
@@ -30,4 +30,4 @@ jobs:
           Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
 
       - name: Create Tunnel
-        run: .\ngrok\ngrok.exe tcp 3389
+        run: ${github.workspace}\ngrok\ngrok.exe tcp 3389
